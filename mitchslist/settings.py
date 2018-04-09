@@ -37,7 +37,7 @@ SECRET_KEY = get_env_variable('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['mitchslist-be.herokuapp.com', 'mitchslist.herokuapp.com']
 
 CORS_ORIGIN_WHITELIST = ['localhost:3000']
 
@@ -111,19 +111,7 @@ DATABASES['default'] = dj_database_url.config()
 DATABASES['default']['ENGINE'] = 'django.db.backends.postgresql_psycopg2'
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.9/howto/static-files/
-# STATIC_ROOT = os.path.join(PROJECT_ROOT, 'staticfiles')
-# STATIC_URL = '/static/'
 
-# MEDIA_ROOT = os.path.join(PROJECT_ROOT, 'media')
-# MEDIA_URL = '/media/'
-
-# # Extra places for collectstatic to find static files.
-# STATICFILES_DIRS = (
-#     os.path.join(BASE_DIR, 'build/static'),
-# )
-
-# DEFAULT_FILE_STORAGE = 'django.core.files.storage.FileSystemStorage'
-# STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 # Password validation
 # https://docs.djangoproject.com/en/2.0/ref/settings/#auth-password-validators
