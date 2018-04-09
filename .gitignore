@@ -89,5 +89,4 @@ local_settings.py
 db.sqlite3
 
 # Uploaded media
-media/**
-!media/**/init.txt
+media
