@@ -106,8 +106,7 @@ DATABASES = {
 # Dj database url
 import dj_database_url
 DATABASES['default'] = dj_database_url.config()
-DATABASES['default']['ENGINE'] = 'django.contrib.gis.db.backends.postgis'
-
+DATABASES['default']['ENGINE'] = 'django.db.backends.postgresql_psycopg2'
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.9/howto/static-files/
 STATIC_ROOT = os.path.join(PROJECT_ROOT, 'staticfiles')
@@ -172,3 +171,13 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.0/howto/static-files/
 
 STATIC_URL = '/static/'
+
+# Configure Django App for Heroku.
+# Override deployment settings with local settings
+try:
+    print('Trying to import local_settings.py')
+    from mitchslist.local_settings import *
+except ImportError:
+    print('Could not import local_settings. Configuring for Heroku.')
+    import django_heroku
+    django_heroku.settings(locals())
