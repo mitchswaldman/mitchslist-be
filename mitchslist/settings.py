@@ -178,6 +178,4 @@ try:
     print('Trying to import local_settings.py')
     from mitchslist.local_settings import *
 except ImportError:
-    print('Could not import local_settings. Configuring for Heroku.')
-    import django_heroku
-    django_heroku.settings(locals())
+    pass
