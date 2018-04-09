@@ -39,7 +39,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['mitchslist-be.herokuapp.com', 'mitchslist.herokuapp.com']
 
-CORS_ORIGIN_WHITELIST = ['localhost:3000']
+CORS_ORIGIN_WHITELIST = ['mitchslist.herokuapp.com', 'mitchslist-be.herokuapp.com', 'localhost:3000']
 
 # Application definition
 
