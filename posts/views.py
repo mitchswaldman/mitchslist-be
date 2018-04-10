@@ -177,7 +177,7 @@ def parse_input_query_param(param, query_params, attribute):
 	if attribute.input_type in (CategoryAttribute.INPUT_TYPE_CHECKBOX, CategoryAttribute.INPUT_TYPE_TEXT):
 		# Checkboxes and text should be | together
 		param_value = query_params.getlist(param)
-		Qr = reduce(lambda x, y: x | Q(**{'attributes__data__{0}'.format(attribute.name.lower()) : param_value}))
+		Qr = reduce(lambda x, y: x | Q(**{'attributes__data__{0}'.format(attribute.name.lower()) : param_value}), Q())
 		return Post.objects.filter(Qr)
 
 	return Post.objects.all()
