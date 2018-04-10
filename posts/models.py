@@ -30,6 +30,9 @@ class PostImage(models.Model):
 	post = models.ForeignKey('posts.Post', on_delete=models.CASCADE, related_name="photos")
 	image = models.FileField(upload_to=upload_post_image)
 
+	def __str__(self):
+		return '{0} - {1}'.format(self.post.title, image)
+
 class Category(models.Model):
 	short_name = models.CharField(max_length=3, primary_key=True)
 	name = models.CharField(max_length=128)
@@ -53,7 +56,10 @@ class Category(models.Model):
 		ordering = ['name']
 		
 	def __str__(self):
-		return self.name
+		parent = self.parent_category
+		if parent is not None:
+			return '{0} - {1}'.format(self.name, self.parent_category.name)
+		return '{0} - None'.format(self.name)
 
 class CategoryAttribute(models.Model):
 	INPUT_WIDGETS = (
@@ -79,6 +85,9 @@ class CategoryAttribute(models.Model):
 	input_type = models.CharField(max_length=128, choices=INPUT_TYPES, blank=True, null=True)
 	# For use if input_widget is a select box
 	input_values = JSONField(blank=True, null=True)
+
+	def __str__(self):
+		return '{0} on category {1}'.format(self.name, self.category)
 
 
 
