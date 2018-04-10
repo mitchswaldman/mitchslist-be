@@ -15,15 +15,21 @@ AWS_FILE_EXPIRE = 200
 AWS_PRELOAD_METADATA = True
 AWS_QUERYSTRING_AUTH = True
 
-DEFAULT_FILE_STORAGE = 'mitchslist.aws.utils.MediaRootS3BotoStorage'
+DEFAULT_FILE_STORAGE = 'mitchslist.aws.conf.MediaRootS3BotoStorage'
 STATICFILES_STORAGE = 'mitchslist.aws.utils.StaticRootS3BotoStorage'
 AWS_STORAGE_BUCKET_NAME = get_env_variable("S3_BUCKET_NAME")
 S3DIRECT_REGION = 'us-west-2'
-S3_URL = 'http://%s.s3.amazonaws.com/' % AWS_STORAGE_BUCKET_NAME
-MEDIA_URL = 'http://%s.s3.amazonaws.com/media/' % AWS_STORAGE_BUCKET_NAME
+S3_URL = 'https://%s.s3.amazonaws.com/' % AWS_STORAGE_BUCKET_NAME
+MEDIA_URL = 'https://%s.s3.amazonaws.com/media/' % AWS_STORAGE_BUCKET_NAME
 MEDIA_ROOT = MEDIA_URL
 STATIC_URL = S3_URL + 'static/'
 ADMIN_MEDIA_PREFIX = STATIC_URL + 'admin/'
+
+from storages.backends.s3boto3 import S3Boto3Storage
+class MediaRootS3BotoStorage(S3Boto3Storage):
+	location = 'media'
+	bucket_name = AWS_STORAGE_BUCKET_NAME
+	# custom_domain = '%s.%s' % (bucket_name, AWS_S3_BASE_DOMAIN)
 
 two_months = datetime.timedelta(days=61)
 date_two_months_later = datetime.date.today() + two_months

@@ -169,7 +169,7 @@ STATIC_URL = '/static/'
 #     os.path.join(BASE_DIR, 'build/static'),
 # )
 
-DEFAULT_FILE_STORAGE = 'django.core.files.storage.FileSystemStorage'
+
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 # Configure Django App for Heroku.
 # Override deployment settings with local settings
