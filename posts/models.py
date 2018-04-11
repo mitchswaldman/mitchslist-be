@@ -31,7 +31,7 @@ class PostImage(models.Model):
 	image = models.FileField(upload_to=upload_post_image)
 
 	def __str__(self):
-		return '{0} - {1}'.format(self.post.title, image)
+		return '{0} - {1}'.format(self.post.title, self.image)
 
 class Category(models.Model):
 	short_name = models.CharField(max_length=3, primary_key=True)
